@@ -1,0 +1,28 @@
+# Local secrets and environment files
+app/.env
+app/.env.*
+!app/.env.example
+
+# Dependencies and build output
+app/node_modules/
+app/dist/
+app/.playwright-cli/
+*.local
+
+# Local tooling and agent state
+.agents/
+.aws/
+.codex/
+
+# Operating system and editor files
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+*.suo
+
+
+references/
