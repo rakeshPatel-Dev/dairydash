@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+/* ═══════════════════════════════════════════════════════════════════
+   Dairydash — Tailwind theme
+   Brand tokens live in @theme; shadcn/ui semantic variables (mapped
+   to the dairy-green palette) are defined on :root and inlined below.
+   Components are styled with utilities in markup or via shadcn/ui.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* custom breakpoints mirroring the original design's responsive steps */
+  --breakpoint-sm: 620px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1060px;
+  --breakpoint-xl: 1200px;
+
+  --color-surface: #f5f8f5;
+  --color-surface-low: #f8faf8;
+  --color-surface-container: #eef3ef;
+  --color-surface-high: #e6ece7;
+  --color-surface-highest: #dbe3dc;
+
+  --color-line: #e3e9e4;
+  --color-line-strong: #d2dbd3;
+
+  --color-ink-2: #4d5d50;
+  --color-ink-3: #7c8a7e;
+  --color-outline: #8b988d;
+
+  --color-primary-strong: #07552a;
+  --color-primary-soft: #e7f5ec;
+  --color-primary-soft-strong: #d3ecdc;
+  --color-primary-fixed: #c9f0d6;
+
+  --color-secondary-soft: #eef3ff;
+
+  --color-amber: #9a5b08;
+  --color-amber-strong: #7c4704;
+  --color-amber-soft: #fdf3df;
+
+  --color-tertiary: #6b3fd4;
+  --color-tertiary-soft: #f4efff;
+
+  --color-rose-soft: #fdecea;
+
+  --color-success: #08632f;
+
+  /* shadows */
+  --shadow-xs: 0 1px 2px rgba(18, 28, 21, 0.05);
+  --shadow-sm: 0 1px 2px rgba(18, 28, 21, 0.04), 0 2px 8px rgba(18, 28, 21, 0.05);
+  --shadow-md: 0 4px 12px rgba(18, 28, 21, 0.06), 0 14px 32px rgba(18, 28, 21, 0.07);
+  --shadow-lg: 0 20px 56px rgba(18, 28, 21, 0.16);
+
+  /* motion */
+  /* opacity only — a transform here (even a finished 0,0 one held by fill mode)
+     makes this wrapper the containing block for fixed children and breaks
+     floating bars (cart pill) */
+  --animate-page-in: page-in 260ms cubic-bezier(0.22, 0.8, 0.28, 1) both;
+  --animate-fade-in: fade-in 140ms ease;
+  --animate-modal-rise: modal-rise 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ── shadcn semantic variables, tuned to the Dairydash palette ── */
+:root {
+  --background: #ffffff;
+  --foreground: #121c15;
+  --card: #ffffff;
+  --card-foreground: #121c15;
+  --popover: #ffffff;
+  --popover-foreground: #121c15;
+  --primary: #0a6b33;
+  --primary-foreground: #ffffff;
+  --secondary: #eef3ef;
+  --secondary-foreground: #121c15;
+  --muted: #f8faf8;
+  --muted-foreground: #7c8a7e;
+  --accent: #e7f5ec;
+  --accent-foreground: #07552a;
+  --destructive: #b42318;
+  --border: #e3e9e4;
+  --input: #d2dbd3;
+  --ring: #0a6b33;
+  --radius: 0.65rem;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-surface font-sans text-foreground antialiased;
+  }
+
+  ::selection {
+    background: #c9ecd6;
+    color: #062d17;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cfd9d1;
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b6c4b8;
+    background-clip: content-box;
+    border: 3px solid transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ═════════ A4 print: only the receipt sheet is visible ═════════ */
+
+@media print {
+  body {
+    background: #fff;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+    padding: 0;
+  }
+  .print-area .receipt {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+    padding: 0;
+    font-size: 11pt;
+  }
+  .print-area table {
+    font-size: 10.5pt;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
