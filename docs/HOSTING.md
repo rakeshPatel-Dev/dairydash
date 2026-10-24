@@ -22,6 +22,23 @@ to execute.
    refreshes work.
 6. Add the custom domain (e.g. `pos.ghardailo.com`) and wait for HTTPS to be active.
 
+### Deploy from the CLI (alternative to the dashboard)
+
+```bash
+cd app
+npx vercel login                    # once per machine, with the business-owned account
+npx vercel link                     # link this folder as the project root
+npx vercel env add VITE_SUPABASE_URL production
+npx vercel env add VITE_SUPABASE_ANON_KEY production
+npx vercel env add VITE_SUPABASE_URL preview
+npx vercel env add VITE_SUPABASE_ANON_KEY preview
+npx vercel deploy                   # preview URL
+npx vercel deploy --prod            # production
+```
+
+`vite.config.ts` refuses to build when either `VITE_SUPABASE_*` variable is missing, so a deploy can never
+ship a blank login screen.
+
 ## Alternative: Netlify
 
 - Base directory: `app`
